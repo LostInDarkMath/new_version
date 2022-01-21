@@ -1,4 +1,4 @@
-# New Version Plugin 🎉
+# Fork of new_version Flutter plugin
 
 A Flutter plugin that makes it possible to: 
 * Check if a user has the most recent version of your app installed.
@@ -12,7 +12,9 @@ See more at the [Dart Packages page.](https://pub.dartlang.org/packages/new_vers
 Add new_version as [a dependency in your `pubspec.yaml` file.](https://flutter.io/using-packages/)
 ```
 dependencies:
-  new_version: ^0.2.3
+  new_version:
+    git:
+    url: https://github.com/LostInDarkMath/new_version.git
 ```
 
 ## Usage
@@ -20,9 +22,11 @@ In `main.dart` (or wherever your app is initialized), create an instance of `New
 
 `final newVersion = NewVersion();`
 
-The plugin will automatically use your Flutter package identifier to check the app store. If your app has a different identifier in the Google Play Store or Apple App Store, you can overwrite this by providing values for `androidId` and/or `iOSId`.
+The plugin will automatically use your Flutter package identifier to check the app store. 
+If your app has a different identifier in the Google Play Store or Apple App Store, you can overwrite this by providing values for `androidId` and/or `iOSId`.
 
-*For iOS:* If your app is only available outside the U.S. App Store, you will need to set `iOSAppStoreCountry` to the two-letter country code of the store you want to search. See http://en.wikipedia.org/wiki/ ISO_3166-1_alpha-2 for a list of ISO Country Codes.
+*For iOS:* If your app is only available outside the U.S. App Store, you will need to set `iOSAppStoreCountry` to the two-letter country code of the store you want to search. 
+See http://en.wikipedia.org/wiki/ISO_3166-1_alpha-2 for a list of ISO Country Codes.
 
 You can then use the plugin in two ways.
 
@@ -46,10 +50,11 @@ If you want to present a customized dialog, you can pass your `VersionStatus` to
 newVersion.showUpdateDialog(
   context: context, 
   versionStatus: status,
-  dialogTitle: 'Custom dialog title',
-  dialogText: 'Custom dialog text',
-  updateButtonText: 'Custom update button text',
-  dismissButtonText: 'Custom dismiss button text',
+  dialogTitle: const Text('Custom dialog title'),
+  dialogText: const Text('Custom dialog text'),
+  updateButtonText: const Text('Custom update button text'),
+  dismissButtonText: const Text('Custom dismiss button text'),
   dismissAction: () => functionToRunAfterDialogDismissed(),
+  design: Design.android,
 )
 ```
