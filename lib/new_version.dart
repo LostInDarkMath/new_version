@@ -118,7 +118,7 @@ class NewVersion {
   /// iOS info is fetched by using the iTunes lookup API, which returns a
   /// JSON document.
   Future<VersionStatus?> _getiOSStoreVersion(PackageInfo packageInfo) async {
-    debugPrint(packageInfo.toString());
+    debugPrint('locale version: ${packageInfo.version}');
     final id = iOSId ?? packageInfo.packageName;
     final parameters = {'bundleId': id};
 
