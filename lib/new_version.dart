@@ -111,6 +111,7 @@ class NewVersion {
       return _getAndroidStoreVersion(packageInfo);
     } else {
       debugPrint('The target platform "${Platform.operatingSystem}" is not yet supported by this package.');
+      return null;
     }
   }
 
@@ -140,12 +141,12 @@ class NewVersion {
       return null;
     }
 
-    final first = results.first as Map<String, String>;
+    final first = results.first as Map<String, dynamic>;
     return VersionStatus._(
       localVersion: packageInfo.version,
-      storeVersion: first['version']!,
-      appStoreLink: first['trackViewUrl']!,
-      releaseNotes: first['releaseNotes'],
+      storeVersion: first['version'] as String,
+      appStoreLink: first['trackViewUrl'] as String,
+      releaseNotes: first['releaseNotes'] as String,
     );
   }
 
