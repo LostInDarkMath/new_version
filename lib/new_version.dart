@@ -105,6 +105,20 @@ class NewVersion {
   /// way.
   Future<VersionStatus?> getVersionStatus() async {
     PackageInfo packageInfo = await PackageInfo.fromPlatform();
+
+    debugPrint(
+        'appName: ${packageInfo.appName}, '
+        'packageName: ${packageInfo.packageName}, '
+        'version: ${packageInfo.version}, '
+        'buildNumber: ${packageInfo.buildNumber}, '
+        'buildSignature: ${packageInfo.buildSignature}'
+    );
+
+    if(packageInfo.version.isEmpty){
+      debugPrint('Cannot determine current version!');
+      return null;
+    }
+
     if (Platform.isIOS) {
       return _getiOSStoreVersion(packageInfo);
     } else if (Platform.isAndroid) {
@@ -143,7 +157,6 @@ class NewVersion {
     }
 
     final first = results.first as Map<String, dynamic>;
-    debugPrint(first.toString());
     return VersionStatus._(
       localVersion: packageInfo.version,
       storeVersion: first['version'] as String,
