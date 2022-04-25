@@ -118,10 +118,11 @@ class NewVersion {
   /// iOS info is fetched by using the iTunes lookup API, which returns a
   /// JSON document.
   Future<VersionStatus?> _getiOSStoreVersion(PackageInfo packageInfo) async {
+    debugPrint(packageInfo.toString());
     final id = iOSId ?? packageInfo.packageName;
     final parameters = {'bundleId': id};
 
-    if (iOSAppStoreCountry != null) {
+    if(iOSAppStoreCountry != null) {
       parameters.addAll({'country': iOSAppStoreCountry!});
     }
 
