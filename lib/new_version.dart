@@ -143,6 +143,7 @@ class NewVersion {
     }
 
     final first = results.first as Map<String, dynamic>;
+    debugPrint(first.toString());
     return VersionStatus._(
       localVersion: packageInfo.version,
       storeVersion: first['version'] as String,
